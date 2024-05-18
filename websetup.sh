@@ -17,8 +17,8 @@ echo "########################################"
 echo "########################################"
 echo "Starting Artifact Deployment"
 echo "########################################"
-mkdir -p /tmp/webfiles
-cd /tmp/webfiles
+mkdir -p /tmp/webfiles2
+cd /tmp/webfiles2
 echo
 
 wget https://www.tooplate.com/zip-templates/2098_health.zip > /dev/null
@@ -37,7 +37,7 @@ echo
 echo "########################################"
 echo "Removing Temporary Files"
 echo "########################################"
-rm -rf /tmp/webfiles
+rm -rf /tmp/webfiles2
 echo
 
 sudo systemctl status apache2
