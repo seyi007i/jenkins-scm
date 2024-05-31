@@ -9,4 +9,4 @@ COPY 2118_chilling_cafe/* /usr/share/nginx/html/
 
 # Expose port 80 to allow external access
 EXPOSE 80
-
+    

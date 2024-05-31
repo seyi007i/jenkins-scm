@@ -20,7 +20,14 @@ pipeline {
         stage('Building our image') {
             steps{
                 script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                     sh 'docker build -t dockerfile .'
+                        }
+                    }
+            }
+        stage('run our image') {
+            steps{
+                script {
+                     sh 'docker run -it -p8081:80 -d dockerfile'
                         }
                     }
             }
