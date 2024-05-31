@@ -1,5 +1,5 @@
 pipeline {
-    agent { dockerfile true }
+    agent any
 
     environment {
     registry = "YourDockerhubAccount/YourRepository"
@@ -25,12 +25,6 @@ pipeline {
                 }
             }
         
-        stage ('deploy to EC2') {
-            steps {
-                script {
-                    
-                }
-            }
-        }
+       
     }
 }
