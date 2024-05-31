@@ -5,3 +5,5 @@ test 3
 
 remote web install
 added jenkinsfile
+
+update docker file
