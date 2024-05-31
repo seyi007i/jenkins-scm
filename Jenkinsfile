@@ -1,11 +1,9 @@
 pipeline {
     agent any
 
-    environment {
-    registry = "YourDockerhubAccount/YourRepository"
-    registryCredential = 'dockerhub_id'
-    dockerImage = ''
-    }
+    environment {     
+    DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')     
+}
     
     stages {
         stage ('fetch code') {
@@ -31,12 +29,25 @@ pipeline {
                         }
                     }
             }
-        stage ('Test') {
-            steps {
-                sh 'node --version'
-                sh 'svn --version'
-                }
-            }
+
+        stage('Login to Docker Hub') {      	
+            steps{                       	
+	            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                		
+	            echo 'Login Completed'      
+                }           
+            }   
+        stage('Push Image to Docker Hub') {         
+    steps{                            
+ sh 'sudo docker push <dockerhubusername>/<dockerhubreponame>:$BUILD_NUMBER'           
+echo 'Push Image Completed'       
+    }            
+}  
+
+        post{
+    always {  
+	sh 'docker logout'     
+    }      
+} 
         
        
     }
