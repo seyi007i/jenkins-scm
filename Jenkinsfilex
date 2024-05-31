@@ -1,12 +1,10 @@
 pipeline {
-    agent { dockerfile true }
+    agent any
 
     environment {
-    registry = "YourDockerhubAccount/YourRepository"
-    registryCredential = 'dockerhub_id'
-    dockerImage = ''
+        EC2_IP = '51.20.9.30'
     }
-    
+
     stages {
         stage ('fetch code') {
             steps {
@@ -17,18 +15,15 @@ pipeline {
             }
         }
         
-    
-        stage ('Test') {
-            steps {
-                sh 'node --version'
-                sh 'svn --version'
-                }
-            }
-        
         stage ('deploy to EC2') {
             steps {
                 script {
-                    
+                    echo "deploying to shell-script to ec2"
+                    def shellCmd = "bash ./websetup.sh"
+                    sshagent (['ec2-user']) {
+                        sh "scp -o StrictHostKeyChecking=no websetup.sh ubuntu@${EC2_IP}:/home/ubuntu"
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@${EC2_IP} ${shellCmd}"
+                    }
                 }
             }
         }
