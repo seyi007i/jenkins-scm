@@ -39,7 +39,7 @@ pipeline {
             }   
         stage('Push Image to Docker Hub') {         
             steps{                            
-                sh 'docker push seyiogunniran/seyirepo:dockerfile'           
+                sh 'docker push seyiogunniran/seyirepo:$BUILD_NUMBER'           
                 echo 'Push Image Completed'       
                  }            
             }  
