@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {     
-    DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')     
-}
+    DOCKERHUB_CREDENTIALS= credentials('docker')     
+        }
     
     stages {
         stage ('fetch code') {
@@ -37,17 +37,17 @@ pipeline {
                 }           
             }   
         stage('Push Image to Docker Hub') {         
-    steps{                            
- sh 'sudo docker push <dockerhubusername>/<dockerhubreponame>:$BUILD_NUMBER'           
-echo 'Push Image Completed'       
-    }            
-}  
+            steps{                            
+                sh 'sudo docker push seyiogunniran/seyirepo:$BUILD_NUMBER'           
+                echo 'Push Image Completed'       
+                 }            
+            }  
 
         post{
-    always {  
-	sh 'docker logout'     
-    }      
-} 
+            always {  
+	            sh 'docker logout'     
+             }      
+            } 
         
        
     }
