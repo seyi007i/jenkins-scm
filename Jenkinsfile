@@ -22,14 +22,14 @@ pipeline {
                         }
                     }
             }
-        stage('run our image') {
+    /*    stage('run our image') {
             steps{
                 script {
-                     sh 'docker run -it -p8082:80 -d webapp:1'
+                     sh 'docker run -it -p8082:80 -d '
                         }
                     }
             }
-
+*/
         stage('Login to Docker Hub') {      	
             steps{                       	
 	            // sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password' 
