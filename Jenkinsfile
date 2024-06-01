@@ -25,7 +25,7 @@ pipeline {
         stage('run our image') {
             steps{
                 script {
-                     sh 'docker run -it -p8082:80 -d dockerfile'
+                     sh 'docker run -it -p8081:80 -d dockerfile'
                         }
                     }
             }
