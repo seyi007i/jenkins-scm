@@ -39,11 +39,11 @@ pipeline {
             }   
         stage('Push Image to Docker Hub') {         
             steps{                            
-                sh 'sudo docker push seyiogunniran/seyirepo:$BUILD_NUMBER'           
+                sh 'docker push seyiogunniran/seyirepo:latest'           
                 echo 'Push Image Completed'       
                  }            
             }  
-/*
+    /*
     post{
         always {  
 	        sh 'docker logout'     
