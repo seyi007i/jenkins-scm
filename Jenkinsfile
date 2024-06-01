@@ -18,14 +18,14 @@ pipeline {
         stage('Building our image') {
             steps{
                 script {
-                     sh 'docker build -t dockerfile .'
+                     sh 'docker build -t seyiogunniran/seyirepo .'
                         }
                     }
             }
         stage('run our image') {
             steps{
                 script {
-                     sh 'docker run -it -p8082:80 -d dockerfile'
+                     sh 'docker run -it -p8082:80 -d webapp:1'
                         }
                     }
             }
@@ -39,7 +39,7 @@ pipeline {
             }   
         stage('Push Image to Docker Hub') {         
             steps{                            
-                sh 'docker push seyiogunniran/seyirepo:$BUILD_NUMBER'           
+                sh 'docker push seyiogunniran/seyirepo'           
                 echo 'Push Image Completed'       
                  }            
             }  
