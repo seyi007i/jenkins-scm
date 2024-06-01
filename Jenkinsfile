@@ -39,7 +39,7 @@ pipeline {
             }   
         stage('Push Image to Docker Hub') {         
             steps{                            
-                sh 'docker push seyiogunniran/seyirepo:latest'           
+                sh 'docker push seyiogunniran/seyirepo:dockerfile'           
                 echo 'Push Image Completed'       
                  }            
             }  
